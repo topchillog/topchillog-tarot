@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TopChillog Valentine Tarot</title>
+
+  <!-- Valentine + Clean Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      background: #f7c84c; /* TopChillog yellow */
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      padding: 24px;
+      text-align: center;
+    }
+
+    /* Valentine + TopChillog title */
+    h2 {
+      margin: 12px 0 6px;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.4rem;
+      color: #b1003a; /* Valentine red */
+      letter-spacing: 1px;
+      text-shadow: 
+        0 3px 0 rgba(0,0,0,0.15),
+        0 0 12px rgba(255, 0, 90, 0.25);
+    }
+
+    p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .tarot {
+      width: 100%;
+      border-radius: 16px;
+      margin: 18px 0;
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .tarot.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      margin-top: 12px;
+      opacity: 0.75;
+    }
+
+    .disclaimer {
+      font-size: 0.75rem;
+      margin-top: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>TopChillog Valentine Tarot</h2>
+    <p>Chill ka lang. Eto ang message mo today!</p>
+
+    <!-- Tarot Card -->
+    <img id="tarotCard" class="tarot" alt="Tarot Card">
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button onclick="showRandomCard()">🔮 Scan again</button>
+    </div>
+
+    <div class="hint">
+      Tip: Long-press the image to save
+    </div>
+
+    <div class="disclaimer">
+      For entertainment purposes only
+    </div>
+
+  </div>
+
+  <script>
+    // tarot1.png to tarot21.png
+    const images = Array.from({ length: 21 }, (_, i) =>
+      `images/tarot${i + 1}.png`
+    );
+
+    let currentCard = "";
+
+    function showRandomCard() {
+      const card = document.getElementById("tarotCard");
+      card.classList.remove("show");
+
+      setTimeout(() => {
+        currentCard = images[Math.floor(Math.random() * images.length)];
+        card.src = currentCard;
+        card.classList.add("show");
+      }, 150);
+    }
+
+    // Load a card on first scan
+    showRandomCard();
+  </script>
+</body>
+</html>
